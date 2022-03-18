@@ -32,7 +32,6 @@ The portfolio is produced using the KDD - Knowledge Discovery in Databases metho
 4. Edit all file calling syntax to own folder structure.
 5. Run code.
 
-## Credits: ##
 
 
 
