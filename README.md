@@ -18,8 +18,7 @@ flights with the end goal of determining if weather variables have a direct caus
 **Datasets:**
 1. The first dataset outlines all recorded flight delays for the United States of America for the year of 2019 in conjunction to weather descriptions on an hourly basis for a single record. This dataset is sourced from Kaggle.<br /><br />
 2. The second dataset outlines the daily and hourly measurements of weather from the JFK Airport weather station for the period of the 1st of January 2020 to the 31st of January 2021. This dataset is sourced from the NCEI, NOAA.<br /><br />
-3. The third dataset outlines the daily and hourly measurements of weather from the LAX Airport weather station for the period of the 1st of January 2020 to the 31st of January 2021. This dataset is sourced from the NCEI, NOAA.<br /><br />
-
+3. The third dataset outlines the daily and hourly measurements of weather from the LAX Airport weather station for the period of the 1st of January 2020 to the 31st of January 2021. This dataset is sourced from the NCEI, NOAA.
 ## Methodology: ##
 The portfolio is produced using the KDD - Knowledge Discovery in Databases methodology.
 <p align="center">
@@ -30,7 +29,10 @@ The portfolio is produced using the KDD - Knowledge Discovery in Databases metho
 1. Pre-requisite: Download and install Python.
 2. Download project as zip.
 3. Import into IDE of choice.
-4. Edit all file calling syntax to own machine.
+4. Edit all file calling syntax to own folder structure.
 5. Run code.
+
+## Credits: ##
+
 
 
