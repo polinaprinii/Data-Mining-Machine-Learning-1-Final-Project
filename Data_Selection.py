@@ -8,9 +8,10 @@ Introducing function to prevent the file merge from re-occurring each time the c
 """
 def mergefile():
 # Merging all flight data from May 2019 to December 2019 from the "Flight Delays for 2019 for the USA" into one CSV file:
+# Restrict file from duplicating.
     if os.path.exists("/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Flight_Weather.csv"):
         pass
-
+# To understand how the else works, please delete the merged file from your repository.
     else:
 # Step 1: Set working directory.
         os.chdir("/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA")
@@ -27,4 +28,11 @@ def mergefile():
                     index=False, encoding='utf-8-sig')
 
 mergefile()
+
+# Setting the merged file to a pandas dataframe:
+df = pd.read_csv("/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Flight_Weather.csv")
+
+print(df.shape)
+
+
 
