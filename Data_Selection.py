@@ -37,10 +37,27 @@ print(random_winter_df.shape, "\n")
 print(random_winter_df.head(5), "\n")
 
 # Merge all 3 newly created datasets with random selection
+Master_df = pd.concat([random_summer_df, random_autumn_df, random_winter_df], ignore_index=True, sort=False)
+print(Master_df.shape)
 
+# Exporting file to local hard-drive:
+def export():
+# Restrict file from duplicating.
+    if os.path.exists(
+        "/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Flight_Weather.csv"):
+        pass
 
+    else:
+# Export to csv
+        Master_df.to_csv(
+            "/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Flight_Weather.csv",
+            index=False, encoding='utf-8-sig')
 
+export() # Due to laptop consitriction we will look to import the exported file following the pre-processing step.
 
+"""
+Retaining below code for leanring and exposure purposes.
+"""
 """
 Introducing function to prevent the file merge from re-occurring each time the code is executed.
 """
