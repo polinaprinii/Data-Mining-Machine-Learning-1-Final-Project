@@ -1,3 +1,4 @@
+# This file deals with the data selection aspect of the project in prep for machine learning techniques.
 # Importing supporting libraries.
 import pandas as pd
 import glob
