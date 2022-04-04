@@ -57,7 +57,7 @@ def export():
 export() # Due to laptop consitriction we will look to import the exported file following the pre-processing step.
 
 """
-Retaining below code for leanring and exposure purposes.
+Retaining below code for learning and exposure purposes.
 """
 """
 Introducing function to prevent the file merge from re-occurring each time the code is executed.
