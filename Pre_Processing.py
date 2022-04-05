@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 import missingno as msno
 from matplotlib import pyplot as plt
-import regex as r
+import exrex
 
 # Importing our file:
 
@@ -33,7 +33,7 @@ Manly present within the actual departure and actual arrival columns.
 print("Below are the number of missing values within each column present: ", "\n", "\n", df.isnull().sum(), "\n")
 
 # Start filling and or replacing the null/missing values.
-df['tail_number'] = df['tail_number'].fillna()
+df['tail_number'] = df['tail_number'].fillna(exrex.getone(r'(\d "N" + {1,4}){4}'))
 
 
 
