@@ -10,6 +10,8 @@ import pandas as pd
 import numpy as np
 import missingno as msno
 from matplotlib import pyplot as plt
+import regex as r
+
 # Importing our file:
 
 df = pd.read_csv("/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Flight_Weather.csv")
@@ -29,6 +31,9 @@ Manly present within the actual departure and actual arrival columns.
 # Pandas can detect "standard missing values" such as N/A or blank cells.
 # As we are working with a considerably large amount of data, we will count the number of missing values.
 print("Below are the number of missing values within each column present: ", "\n", "\n", df.isnull().sum(), "\n")
+
+# Start filling and or replacing the null/missing values.
+df['tail_number'] = df['tail_number'].fillna()
 
 
 
