@@ -58,7 +58,7 @@ def random_date(start, end):
     objects.
     """
     delta = end - start
-    int_delta = (delta.days * 24 * 60)
+    int_delta = (delta.days * 24 * 60 * 60) + delta.seconds
     random_second = randrange(int_delta)
     return start + timedelta(seconds=random_second)
 
@@ -75,6 +75,7 @@ We achieve this by using the previously filled missing values from actual depart
 For simplicity reasons, we add an extra hour to the already given date-time. 
 This may cause bias however, to ensure there are no missing values present in the data we will proceed.
 """
+df['actual_arrival_dt'] = df['actual_arrival_dt'].fillna(pd.to_datetime(df['actual_departure_dt']) +
+                                                         pd.to_timedelta(1, unit='H'))
 
-#print("Below are the number of missing values within each column present: ", "\n", "\n", df.isnull().sum(), "\n")
-
+print("Below are the number of missing values within each column present: ", "\n", "\n", df.isnull().sum(), "\n")
