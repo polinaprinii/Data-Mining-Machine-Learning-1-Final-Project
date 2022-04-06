@@ -69,4 +69,12 @@ d2 = datetime.strptime('31/12/2019 23:55', '%d/%m/%Y %H:%M')
 # Fill all missing values within the actual departure date time column.
 df['actual_departure_dt'] = df['actual_departure_dt'].fillna(random_date(d1, d2).strftime("%Y-%m-%d %H:%M"))
 
-print("Below are the number of missing values within each column present: ", "\n", "\n", df.isnull().sum(), "\n")
+# Now we move to addressing missing values within the actual arrive date time column.
+"""
+We achieve this by using the previously filled missing values from actual departure date time column and add time.
+For simplicity reasons, we add an extra hour to the already given date-time. 
+This may cause bias however, to ensure there are no missing values present in the data we will proceed.
+"""
+
+#print("Below are the number of missing values within each column present: ", "\n", "\n", df.isnull().sum(), "\n")
+
