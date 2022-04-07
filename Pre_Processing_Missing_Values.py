@@ -7,13 +7,14 @@ Finally, we will apply Dimensionality Reduction to allow for better performance 
 
 # Importing all needed libraries:
 import pandas as pd
-import numpy as np
 import missingno as msno
 from matplotlib import pyplot as plt
 import random
 from random import randrange
 from datetime import timedelta
 from datetime import datetime
+import seaborn as sns
+import numpy as np
 
 # Importing our file:
 
@@ -97,6 +98,54 @@ df[columns] = df[columns].fillna('0.01')
 
 print("Below all column should indicate a zero count after being addressed: ", "\n", "\n", df.isnull().sum(), "\n")
 
-# Final step includes assigning a new name to our data frame which will pull from this file to the next addressing outliers.
-updated_df = df
-print(updated_df.head(25))
+# Moving on to identify any outliers.
+"""
+We will be using the IQR method, which uses the box plot to highlight outliers.
+The IQR (interquartile range) computes the lower bound and upper bound to identify outliers.
+As we are dealing with a mix of string and numeric type columns within the dataframe.
+We filter out any string type columns.
+"""
+# Filtering out the columns.
+Outlier_columns = ['departure_delay', 'arrival_delay', 'delay_carrier', 'delay_weather', 'delay_national_aviation_system',
+        'delay_security', 'delay_late_aircarft_arrival', 'HourlyDryBulbTemperature_x', 'HourlyPrecipitation_x',
+        'HourlyStationPressure_x', 'HourlyVisibility_x', 'HourlyWindSpeed_x', 'HourlyDryBulbTemperature_y',
+        'HourlyPrecipitation_y', 'HourlyStationPressure_y', 'HourlyVisibility_y', 'HourlyWindSpeed_y']
+
+# FUNCTION TO IDENTIFY OUTLIERS USING IQR METHOD
+def iqr_outlier(x, factor):
+    q1 = x.quantile(0.25)
+    q3 = x.quantile(0.75)
+    iqr = q3 - q1
+    min_ = q1 - factor * iqr
+    max_ = q3 + factor * iqr
+    result_ = pd.Series([0] * len(x))
+    result_[((x < min_) | (x > max_))] = 1
+    return result_
+
+
+# SCATTER PLOTS HIGHLIGHTING OUTLIERS CALCULATED USING IQR METHOD
+fig, ax = plt.subplots(7, 2, figsize=(20, 30))
+row = col = 0
+for n, i in enumerate(df[Outlier_columns].columns):
+    if (n % 2 == 0) & (n > 0):
+        row += 1
+        col = 0
+    outliers = iqr_outlier(df[Outlier_columns][i], 1.5)
+
+    if sum(outliers) == 0:
+        sns.scatterplot(x=np.arange(len(df[Outlier_columns][i])), y=df[Outlier_columns][i], ax=ax[row, col],
+                        legend=False, color='green')
+    else:
+        sns.scatterplot(x=np.arange(len(df[Outlier_columns][i])), y=df[Outlier_columns][i], ax=ax[row, col],
+                        hue=outliers, palette=['green', 'red'])
+    for x, y in zip(np.arange(len(df[Outlier_columns][i]))[outliers == 1], df[Outlier_columns][i][outliers == 1]):
+        ax[row, col].text(x=x, y=y, s=y, fontsize=8)
+    ax[row, col].set_ylabel("")
+    ax[row, col].set_title(i)
+    ax[row, col].xaxis.set_visible(False)
+    if sum(outliers) > 0:
+        ax[row, col].legend(ncol=2)
+    col += 1
+ax[row, col].axis('off')
+plt.show()
+
