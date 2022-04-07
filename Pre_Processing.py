@@ -43,11 +43,11 @@ print("Below are the number of missing values within each column present: ", "\n
 n1 = "%03d" % random.randint(0, 999)
 n2 = random.randint(65, 90)
 n3 = random.randint(65, 90)
-tailnumber = "N" + n1 + chr(n2) + chr(n3)
-print(tailnumber)
+tail_number = "N" + n1 + chr(n2) + chr(n3)
+
 
 # # Applying the change to the tail number column.
-df['tail_number'] = df['tail_number'].fillna(tailnumber)
+df['tail_number'] = df['tail_number'].fillna(tail_number)
 
 
 # Next we move to addressing the missing values within the actual departure and arrival columns.
@@ -61,6 +61,7 @@ def random_date(start, end):
     int_delta = (delta.days * 24 * 60 * 60) + delta.seconds
     random_second = randrange(int_delta)
     return start + timedelta(seconds=random_second)
+
 
 # Set start and end date, for simplicity purposes we will generate dates for the month of December.
 d1 = datetime.strptime('1/12/2019 00:00', '%d/%m/%Y %H:%M')
@@ -78,4 +79,24 @@ This may cause bias however, to ensure there are no missing values present in th
 df['actual_arrival_dt'] = df['actual_arrival_dt'].fillna(pd.to_datetime(df['actual_departure_dt']) +
                                                          pd.to_timedelta(1, unit='H'))
 
-print("Below are the number of missing values within each column present: ", "\n", "\n", df.isnull().sum(), "\n")
+# Next we move to addressing missing values for the Station x and Station y columns.
+df['STATION_x'] = df['STATION_x'].fillna(method='ffill')
+df['STATION_y'] = df['STATION_y'].fillna(method='ffill')
+
+"""
+Lastly we address the columns outlining weather information. 
+It is assumed that the missing values are not missing values and simply represent a lack of precipitation and so one
+for a given time stamps.
+To ensure an absence of missing values throughout the data we will modify all 0 values by 0.01 to avoid high basis.
+"""
+columns = ['HourlyDryBulbTemperature_x', 'HourlyPrecipitation_x', 'HourlyStationPressure_x', 'HourlyVisibility_x',
+           'HourlyWindSpeed_x', 'HourlyDryBulbTemperature_y', 'HourlyPrecipitation_y', 'HourlyStationPressure_y',
+           'HourlyVisibility_y', 'HourlyWindSpeed_y']
+
+df[columns] = df[columns].fillna('0.01')
+
+print("Below all column should indicate a zero count after being addressed: ", "\n", "\n", df.isnull().sum(), "\n")
+
+# Final step includes assigning a new name to our data frame which will pull from this file to the next addressing outliers.
+updated_df = df
+print(updated_df.head(25))
