@@ -13,8 +13,6 @@ import random
 from random import randrange
 from datetime import timedelta
 from datetime import datetime
-import seaborn as sns
-import numpy as np
 
 # Importing our file:
 
@@ -122,6 +120,5 @@ Outlier_columns = ['departure_delay', 'arrival_delay', 'delay_carrier', 'delay_w
         'HourlyPrecipitation_y', 'HourlyStationPressure_y', 'HourlyVisibility_y', 'HourlyWindSpeed_y']
 
 # Plotting outliers
-df[Outlier_columns].plot(kind="box",subplots=True,layout=(9,2),figsize=(30,35));
+df[Outlier_columns].plot(kind="box", subplots=True, layout=(9, 2), figsize=(30, 35));
 plt.show()
-
