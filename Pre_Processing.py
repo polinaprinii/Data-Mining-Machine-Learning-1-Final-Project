@@ -124,6 +124,14 @@ Outlier_columns = ['departure_delay', 'arrival_delay', 'delay_carrier', 'delay_w
 df[Outlier_columns].plot(kind="box", subplots=True, layout=(9, 2), figsize=(30, 35));
 plt.show()
 
+# Converting float type columns to integers for simplicity.
+df = df.astype({"STATION_x":'int', "HourlyDryBulbTemperature_x":'int',"HourlyPrecipitation_x":'int',
+                "HourlyStationPressure_x":'int', "HourlyVisibility_x":'int', "HourlyWindSpeed_x":'int',
+                "STATION_y":'int', "HourlyDryBulbTemperature_y":'int', "HourlyPrecipitation_y":'int',
+                "HourlyStationPressure_y":'int', "HourlyVisibility_y":'int', "HourlyWindSpeed_y":'int'})
+
+print(df.dtypes)
+
 # Exporting the cleansed file to local hard-drive:
 def export():
 # Restrict file from duplicating.
