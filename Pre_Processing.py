@@ -6,6 +6,7 @@ Finally, we will apply Dimensionality Reduction to allow for better performance 
 """
 
 # Importing all needed libraries:
+import os
 import pandas as pd
 import missingno as msno
 from matplotlib import pyplot as plt
@@ -122,3 +123,18 @@ Outlier_columns = ['departure_delay', 'arrival_delay', 'delay_carrier', 'delay_w
 # Plotting outliers
 df[Outlier_columns].plot(kind="box", subplots=True, layout=(9, 2), figsize=(30, 35));
 plt.show()
+
+# Exporting the cleansed file to local hard-drive:
+def export():
+# Restrict file from duplicating.
+    if os.path.exists(
+        "/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Cleansed_Flight_Weather.csv"):
+        pass
+
+    else:
+# Export to csv
+        df.to_csv(
+            "/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Cleansed_Flight_Weather.csv",
+            index=False, encoding='utf-8-sig')
+
+export()
