@@ -53,4 +53,25 @@ feat_importance = pd.Series(importance, df[columns].columns[0: len(df[columns].c
 feat_importance.plot(kind='bar', color='teal', figsize = (18, 10))
 plt.show()
 
+"""
+Following the results of both the Correlation Matrix and the Mutual Information Gain, the following features are moved 
+forward based on the outlined thresholds:
+
+Correlation Matrix, any feature above 0.25 are considered as having a strong measure and direction of the linear association
+between two variables:
+- departure_delay
+- arrival_delay
+- delay_carrier
+- delay_weather
+- delay_national_aviation_system
+- delay_late_aircraft_arrival
+- HourlyDryBulbTemperature_x
+- HourlyPrecipitation_x
+- HourlyVisibility_x
+- HourlyDryBulbTemperature_y
+- HourlyPrecipitation_y
+- HourlyVisibility_y
+
+The above selection is 
+"""
 
