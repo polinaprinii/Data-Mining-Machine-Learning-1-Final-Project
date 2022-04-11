@@ -72,6 +72,6 @@ between two variables:
 - HourlyPrecipitation_y
 - HourlyVisibility_y
 
-The above selection is 
+The above selection is supported by the Mutual Information Gain.
 """
 
