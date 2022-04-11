@@ -74,4 +74,11 @@ between two variables:
 
 The above selection is supported by the Mutual Information Gain.
 """
+selection = ['departure_delay', 'arrival_delay', 'delay_carrier', 'delay_weather','delay_national_aviation_system',
+             'delay_late_aircarft_arrival', 'HourlyDryBulbTemperature_x', 'HourlyPrecipitation_x', 'HourlyVisibility_x',
+             'HourlyDryBulbTemperature_y', 'HourlyPrecipitation_y', 'HourlyVisibility_y']
 
+# Setting selection to a new dataframe which will be exported before and after PCA dimensionality reduction.
+new_df = df[selection]
+
+# Extracting selection prior to PCA application.
