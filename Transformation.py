@@ -81,4 +81,4 @@ selection = ['departure_delay', 'arrival_delay', 'delay_carrier', 'delay_weather
 # Setting selection to a new dataframe which will be exported before and after PCA dimensionality reduction.
 new_df = df[selection]
 
-# Extracting selection prior to PCA application.
+# Extracting selection prior to PCA application as we will look to apply K-Means clustering to both pre PCA and after PCA.
