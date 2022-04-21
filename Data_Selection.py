@@ -54,7 +54,7 @@ def export():
             "/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Flight_Weather.csv",
             index=False, encoding='utf-8-sig')
 
-export() # Due to laptop constrictions we will look to import the exported file following the pre-processing step.
+export() # Due to laptop constraints we will look to import the exported file following the pre-processing step.
 
 """
 Retaining below code for learning and exposure purposes.
