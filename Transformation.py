@@ -1,5 +1,5 @@
 # Importing all necessary packages:
-
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -82,3 +82,16 @@ selection = ['departure_delay', 'arrival_delay', 'delay_carrier', 'delay_weather
 new_df = df[selection]
 
 # Extracting selection prior to PCA application as we will look to apply K-Means clustering to both pre PCA and after PCA.
+def export():
+# Restrict file from duplicating.
+    if os.path.exists(
+        "/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Flight_Weather.csv"):
+        pass
+
+    else:
+# Export to csv
+        new_df.to_csv(
+            "/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Selection.csv",
+            index=False, encoding='utf-8-sig')
+
+export() # Due to laptop constrictions we will look to import the exported file following the pre-processing step.
