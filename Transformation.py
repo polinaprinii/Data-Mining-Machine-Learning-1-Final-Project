@@ -133,13 +133,6 @@ ax.grid()
 plt.show()
 
 # Next we move to extract 2 files.
-# First we filter our second selection.
-final_selection = ['origin_airport','departure_delay', 'arrival_delay', 'delay_carrier', 'delay_weather','delay_national_aviation_system',
-                    'delay_late_aircarft_arrival', 'HourlyDryBulbTemperature_x', 'HourlyPrecipitation_x', 'HourlyVisibility_x',
-                    'HourlyDryBulbTemperature_y', 'HourlyPrecipitation_y', 'HourlyVisibility_y']
-
-extract_df = df[final_selection]
-
 # Extracting selection prior to PCA application as we will look to apply K-Means clustering to both pre PCA and after PCA.
 def export():
 # Restrict file from duplicating.
@@ -153,11 +146,11 @@ def export():
 
     else:
 # Export to csv
-        extract_df.to_csv(
+        selection_df.to_csv(
             "/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Selection_pre_PCA.csv",
             index=False, encoding='utf-8-sig')
 
-        finalDf.to_csv(
+        principalDf.to_csv(
             "/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Selection_PCA.csv",
             index=False, encoding='utf-8-sig')
 
