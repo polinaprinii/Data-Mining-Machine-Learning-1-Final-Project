@@ -4,15 +4,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.feature_selection import mutual_info_classif
-from sklearn.decomposition import PCA, KernelPCA, NMF
-import numpy as np
+from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
 # Importing our csv file.
 df = pd.read_csv("/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Cleansed_Flight_Weather.csv")
 
 # Ensuring the dataframe loaded correctly.
-print(df.dtypes)
+# print(df.dtypes)
 
 """
 Running the data through a number of feature selection techniques to understand the data prior to undertaking the 
@@ -86,7 +85,7 @@ selection_df = df[selection]
 
 # Now we proceed to standardising the feature selection.
 scaled_features = df[selection]
-print(scaled_features.head(5))
+# print(scaled_features.head(5))
 scaled_features = StandardScaler().fit_transform(scaled_features)
 
 """ 
@@ -96,24 +95,24 @@ Due to this we re-format the numpy array back into a dataframe as PCA cannot be 
 scaled_features_df = pd.DataFrame(scaled_features, index=df[selection].index, columns=df[selection].columns)
 
 # Sanity check to see the re-format was successful.
-print(scaled_features_df.head(5), "\n")
-print(scaled_features_df.shape)
+# print(scaled_features_df.head(5), "\n")
+# print(scaled_features_df.shape)
 
 # Now we move to reducing the dimension of our standardised dataframe from 12 columns to 6 columns.
 pca = PCA(n_components=6) # setting the limit of reduction.
 principalComponents = pca.fit_transform(scaled_features_df)
-print(principalComponents)
+# print(principalComponents)
 
 principalDf = pd.DataFrame(data = principalComponents
              , columns = ['principal component 1', 'principal component 2',
                           'principal component 3', 'principal component 4',
                           'principal component 5', 'principal component 6'])
-print(principalDf.head(5))
-print(principalDf.shape)
+# print(principalDf.head(5))
+# print(principalDf.shape)
 
 # Lastly we concatenate the reduced dataset with a single column from the original source which specifies the origin airport.
 finalDf = pd.concat([principalDf, df[target]], axis = 1)
-print(finalDf.head(5))
+# print(finalDf.head(5))
 
 # Visualise results.
 fig = plt.figure(figsize = (8,8))
@@ -163,3 +162,6 @@ def export():
             index=False, encoding='utf-8-sig')
 
 export() # Due to laptop constrictions we will look to import the exported file following the pre-processing step.
+
+# Lastly we check how much information (variance) can be attributed to each of the principal components.
+print(sum(pca.explained_variance_ratio_))
