@@ -98,15 +98,13 @@ scaled_features_df = pd.DataFrame(scaled_features, index=df[selection].index, co
 # print(scaled_features_df.head(5), "\n")
 # print(scaled_features_df.shape)
 
-# Now we move to reducing the dimension of our standardised dataframe from 12 columns to 6 columns.
-pca = PCA(n_components=6) # setting the limit of reduction.
+# Now we move to reducing the dimension of our standardised dataframe from 12 columns to 2 columns.
+pca = PCA(n_components=2) # setting the limit of reduction.
 principalComponents = pca.fit_transform(scaled_features_df)
 # print(principalComponents)
 
 principalDf = pd.DataFrame(data = principalComponents
-             , columns = ['principal component 1', 'principal component 2',
-                          'principal component 3', 'principal component 4',
-                          'principal component 5', 'principal component 6'])
+             , columns = ['principal component 1', 'principal component 2'])
 # print(principalDf.head(5))
 # print(principalDf.shape)
 
