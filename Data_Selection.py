@@ -1,7 +1,9 @@
-# This file deals with the data selection aspect of the project in prep for machine learning techniques.
+"""
+This file undertakes step one of the KDD methodology and deals with the data selection for the research.
+"""
+
 # Importing supporting libraries.
 import pandas as pd
-
 import os
 
 """
