@@ -14,9 +14,18 @@ import pandas as pd
 df_prePCA = pd.read_csv(
       "/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Selection_pre_PCA.csv"
 )
+# df statistics:
+# print(df_prePCA.info, "\n")
+# print(df_prePCA.describe(), "\n")
+# print(df_prePCA.head(), "\n")
+# print(list(df_prePCA.columns.values), '\n')
 
 df_PCA = pd.read_csv(
       "/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Selection_PCA.csv"
 )
-
+# df statistics:
+# print(df_PCA.info, "\n")
+# print(df_PCA.describe(), "\n")
+# print(df_PCA.head(), "\n")
+# print(list(df_PCA.columns.values), '\n')
 
