@@ -1,3 +1,8 @@
+"""
+This file deals with step three of the KDD methodology.
+The selected and pre-processed data is further transformed to ensure the correct variables are chosen for analysis.
+"""
+
 # Importing all necessary packages:
 import os
 import pandas as pd
