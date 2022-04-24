@@ -1,3 +1,8 @@
+"""
+This file deals with step four of the KDD methodology.
+The application of the Unsupervised Learning, K-Means Clustering is evaluated here.
+"""
+
 # Importing necessary libraries:
 
 import pandas as pd
