@@ -1,6 +1,6 @@
 """
 This file deals with step four of the KDD methodology where various data mining machine learning algorithms are applied
-to the selected, pre-processed and tranformed.
+to the selected, pre-processed and transformed.
 Linear Regression is applied and results evaluated.
 """
 
