@@ -11,6 +11,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import math
+from sklearn.metrics import mean_absolute_percentage_error
 from sklearn import metrics
 import matplotlib.pyplot as plt
 
@@ -35,16 +36,25 @@ X_test = scaler.transform(X_test)
 regr = KNeighborsRegressor(11)
 regr.fit(X_train, y_train)
 y_pred = regr.predict(X_test)
+rmse = math.sqrt(mean_squared_error(y_test, y_pred))
 
 # Interpreting the results:
-print(round(regr.score(X_test, y_test), 2), '\n')
-print(mean_squared_error(y_test, y_pred))
-rmse = math.sqrt(mean_squared_error(y_test, y_pred))
-print("Root Mean Squared Error:", rmse)
+print(round(regr.score(X_test, y_test), 3), '\n')
+print(mean_squared_error(y_test, y_pred), '\n')
+print("Root Mean Squared Error:", rmse, '\n')
+print(mean_absolute_percentage_error(y_test, y_pred), '\n')
+
 #Measuring accuracy on Testing Data
 print('Accuracy',100- (np.mean(np.abs((y_test - y_pred) / y_test)) * 100))
 
-# TODO: Determine resolve 'ValueError: operands could not be broadcast together with shapes' when identifying optimum K value.
+# Plotting the predicted results:
+x_ax = range(9000)
+plt.scatter(x_ax, y_test, s=5, color="blue", label="original")
+plt.plot(x_ax, y_pred, lw=1.5, color="red", label="predicted")
+plt.legend()
+plt.show()
+
+# TODO: Determine & resolve 'ValueError: operands could not be broadcast together with shapes' when identifying optimum K value.
 
 # import math
 # n = len(y)
