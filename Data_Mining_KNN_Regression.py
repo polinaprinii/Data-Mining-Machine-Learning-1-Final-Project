@@ -6,6 +6,7 @@ Here we look to apply K-Nearest-Neighbour Regression analysis to our dataset.
 # Importing needed libraries:
 import numpy as np
 import pandas as pd
+import statsmodels.api as sm
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
@@ -38,11 +39,18 @@ regr.fit(X_train, y_train)
 y_pred = regr.predict(X_test)
 rmse = math.sqrt(mean_squared_error(y_test, y_pred))
 
+model = sm.OLS(y_test, X_test).fit()
+print_model = model.summary()
+
 # Interpreting the results:
-print(round(regr.score(X_test, y_test), 3), '\n')
-print(mean_squared_error(y_test, y_pred), '\n')
-print("Root Mean Squared Error:", rmse, '\n')
-print(mean_absolute_percentage_error(y_test, y_pred), '\n')
+print('Summary of Results KNN Regression : \n', print_model, '\n')
+print('The R-squared is : ', round(regr.score(X_test, y_test), 3), '\n')
+print('The Mean squared error is : %.3f'
+      % mean_squared_error(y_test, y_pred), '\n')
+print('The Root-mean-square deviation for is : %.3f'
+      % rmse, '\n')
+print('The Mean-absolute-percentage-error is : %.3f'
+      % mean_absolute_percentage_error(y_test, y_pred), '\n')
 
 #Measuring accuracy on Testing Data
 print('Accuracy',100- (np.mean(np.abs((y_test - y_pred) / y_test)) * 100))
