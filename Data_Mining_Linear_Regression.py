@@ -79,7 +79,7 @@ print_model = model.summary()
 # Interpreting the results for Dataframe 1:
 print('Summary of Results - Dataframe 1 - Pre PCA: \n',print_model, '\n')
 print('The R-squared value for Dataframe 1 is : ', round(regr.score(X_test, Y_test), 2), '\n')
-print("The Mean squared error for Dataframe 1 is : %.3f"
+print('The Mean squared error for Dataframe 1 is : %.3f'
       % mean_squared_error(Y_test, Y_pred), '\n')
 print('The Root-mean-square deviation for Dataframe 1 is : %.3f'
       % mean_squared_error(Y_test, Y_pred, squared=False), '\n')
