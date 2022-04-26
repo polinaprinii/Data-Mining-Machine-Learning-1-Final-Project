@@ -41,18 +41,18 @@ and dimensionality reduction as the features we are considerable
 
 # Filtering out string/object type columns as Information Gain can't comprehend columns of such type.
 columns = ['scheduled_elapsed_time', 'departure_delay', 'arrival_delay', 'delay_carrier', 'delay_weather',
-           'delay_national_aviation_system', 'delay_security', 'delay_late_aircarft_arrival', 'HourlyDryBulbTemperature_x',
-           'HourlyPrecipitation_x', 'HourlyStationPressure_x', 'HourlyVisibility_x', 'HourlyWindSpeed_x',
-           'HourlyDryBulbTemperature_y', 'HourlyPrecipitation_y', 'HourlyStationPressure_y', 'HourlyVisibility_y',
-           'HourlyWindSpeed_y']
+           'delay_national_aviation_system', 'delay_security', 'delay_late_aircarft_arrival', 'actual_arrival_dt',
+           'HourlyDryBulbTemperature_x','HourlyPrecipitation_x', 'HourlyStationPressure_x', 'HourlyVisibility_x',
+           'HourlyWindSpeed_x', 'HourlyDryBulbTemperature_y', 'HourlyPrecipitation_y', 'HourlyStationPressure_y',
+           'HourlyVisibility_y', 'HourlyWindSpeed_y']
 
 # Setting an array for the Information Gain to interpret.
 array = df[columns].values
-X = array[:, 0:17]
-Y = array[:, 17]
+X = array[:, 0:18]
+Y = array[:, 18]
 
 # Running the information gain.
-importance = mutual_info_classif(X,Y)
+importance = mutual_info_classif(X, Y)
 feat_importance = pd.Series(importance, df[columns].columns[0: len(df[columns].columns)-1])
 feat_importance.plot(kind='bar', color='teal', figsize = (18, 10))
 plt.show()
@@ -69,6 +69,7 @@ between two variables:
 - delay_weather
 - delay_national_aviation_system
 - delay_late_aircraft_arrival
+- actual_arrival_dt
 - HourlyDryBulbTemperature_x
 - HourlyPrecipitation_x
 - HourlyVisibility_x
@@ -79,8 +80,8 @@ between two variables:
 The above selection is supported by the Mutual Information Gain.
 """
 selection = ['departure_delay', 'arrival_delay', 'delay_carrier', 'delay_weather','delay_national_aviation_system',
-             'delay_late_aircarft_arrival', 'HourlyDryBulbTemperature_x', 'HourlyPrecipitation_x', 'HourlyVisibility_x',
-             'HourlyDryBulbTemperature_y', 'HourlyPrecipitation_y', 'HourlyVisibility_y']
+             'delay_late_aircarft_arrival', 'actual_arrival_dt', 'HourlyDryBulbTemperature_x', 'HourlyPrecipitation_x',
+             'HourlyVisibility_x', 'HourlyDryBulbTemperature_y', 'HourlyPrecipitation_y', 'HourlyVisibility_y']
 
 # Filtering out the target column - Origin Airport
 target = ['origin_airport']
