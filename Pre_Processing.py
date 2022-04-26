@@ -13,7 +13,7 @@ import missingno as msno
 from matplotlib import pyplot as plt
 import random
 from random import randrange
-from datetime import timedelta
+from datetime import timedelta, time
 from datetime import datetime
 
 # Importing our file:
@@ -71,6 +71,21 @@ d2 = datetime.strptime('31/12/2019 23:55', '%d/%m/%Y %H:%M')
 # Fill all missing values within the actual departure date time column.
 df['actual_departure_dt'] = df['actual_departure_dt'].fillna(random_date(d1, d2).strftime("%Y-%m-%d %H:%M"))
 
+# Converting to ordinal value .
+df['actual_departure_dt'] = pd.to_datetime(df.date)
+df['actual_departure_dt'] = df['actual_departure_dt'].apply(lambda x: x.toordinal())
+
+# Convert all date-time data to a numerical value to allow regression analysis to interpret these features.
+# First we look at column 'date': Converting from object type to date time type.
+df['date'] = pd.to_datetime(df.date, format="%d/%m/%Y")
+
+
+# Next convert the date to a numerical value using to ordinal function.
+df['date'] = df['date'].apply(lambda x: x.toordinal())
+
+# We drop the 'year', 'month', and 'day' as they become redundant due to the fact the dataset already has a date column.
+df = df.drop(['year', 'month', 'day'], axis=1)
+
 # Now we move to addressing missing values within the actual arrive date time column.
 """
 We achieve this by using the previously filled missing values from actual departure date time column and add time.
@@ -79,6 +94,17 @@ This may cause bias however, to ensure there are no missing values present in th
 """
 df['actual_arrival_dt'] = df['actual_arrival_dt'].fillna(pd.to_datetime(df['actual_departure_dt']) +
                                                          pd.to_timedelta(1, unit='H'))
+
+# Converting to ordinal.
+df['actual_arrival_dt'] = pd.to_datetime(df.date)
+df['actual_arrival_dt'] = df['actual_arrival_dt'].apply(lambda x: x.toordinal())
+
+# Converting remaining columns to ordinal values.
+df['scheduled_departure_dt'] = pd.to_datetime(df.date)
+df['scheduled_departure_dt'] = df['scheduled_departure_dt'].apply(lambda x: x.toordinal())
+
+df['scheduled_arrival_dt'] = pd.to_datetime(df.date)
+df['scheduled_arrival_dt'] = df['scheduled_arrival_dt'].apply(lambda x: x.toordinal())
 
 # Next we move to addressing missing values for the Station x and Station y columns.
 df['STATION_x'] = df['STATION_x'].fillna(method='ffill')
@@ -103,7 +129,7 @@ print("Below all column should indicate a zero count after being addressed: ", "
 We will be using the standard box plot to identify outliers.
 """
 # Checking data type for all columns:
-print(df.dtypes)
+# print(df.dtypes)
 
 # Converting object type columns to numeric type columns.
 df[['HourlyDryBulbTemperature_x', 'HourlyPrecipitation_x', 'HourlyStationPressure_x', 'HourlyVisibility_x',
@@ -113,7 +139,7 @@ df[['HourlyDryBulbTemperature_x', 'HourlyPrecipitation_x', 'HourlyStationPressur
     'HourlyPrecipitation_y', 'HourlyStationPressure_y', 'HourlyVisibility_y', 'HourlyWindSpeed_y']].apply(pd.to_numeric)
 
 # Ensuring the conversion was successful.
-print(df.dtypes)
+# print(df.dtypes)
 
 # Filtering out the string type columns.
 Outlier_columns = ['departure_delay', 'arrival_delay', 'delay_carrier', 'delay_weather', 'delay_national_aviation_system',
@@ -132,6 +158,7 @@ df = df.astype({"STATION_x":'int', "HourlyDryBulbTemperature_x":'int',"HourlyPre
                 "HourlyStationPressure_y":'int', "HourlyVisibility_y":'int', "HourlyWindSpeed_y":'int'})
 
 print(df.dtypes)
+
 
 # Exporting the cleansed file to local hard-drive:
 def export():
