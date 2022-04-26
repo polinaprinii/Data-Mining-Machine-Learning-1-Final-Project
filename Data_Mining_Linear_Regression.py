@@ -33,31 +33,42 @@ print(list(df_prePCA.columns.values), '\n')
 
 # Identifying linear relationships between our target variable and feature variables within Dataframe 1.
 plt.scatter(df_prePCA['departure_delay'], df_prePCA['arrival_delay'])
+plt.title('Linear Relationship: y - Departure Delay & x - Arrival Delay')
 plt.show()
 plt.scatter(df_prePCA['departure_delay'], df_prePCA['delay_carrier'])
-plt.show()
-plt.scatter(df_prePCA['departure_delay'], df_prePCA['delay_carrier'])
+plt.title('Linear Relationship: y - Departure Delay & x - Delay Carrier')
 plt.show()
 plt.scatter(df_prePCA['departure_delay'], df_prePCA['delay_national_aviation_system'])
+plt.title('Linear Relationship: y - Departure Delay & x - Delay National Aviation System')
 plt.show()
 plt.scatter(df_prePCA['departure_delay'], df_prePCA['delay_late_aircarft_arrival'])
+plt.title('Linear Relationship: y - Departure Delay & x - Delay Late Aircraft Arrival')
+plt.show()
+plt.scatter(df_prePCA['departure_delay'], df_prePCA['actual_arrival_dt'])
+plt.title('Linear Relationship: y - Departure Delay & x - Actual Arrival Date')
 plt.show()
 plt.scatter(df_prePCA['departure_delay'], df_prePCA['HourlyDryBulbTemperature_x'])
+plt.title('Linear Relationship: y - Departure Delay & x - HourlyDryBulbTemperature_x')
 plt.show()
 plt.scatter(df_prePCA['departure_delay'], df_prePCA['HourlyPrecipitation_x'])
+plt.title('Linear Relationship: y - Departure Delay & x - HourlyPrecipitation_x')
 plt.show()
 plt.scatter(df_prePCA['departure_delay'], df_prePCA['HourlyVisibility_x'])
+plt.title('Linear Relationship: y - Departure Delay & x - HourlyVisibility_x')
 plt.show()
 plt.scatter(df_prePCA['departure_delay'], df_prePCA['HourlyDryBulbTemperature_y'])
+plt.title('Linear Relationship: y - Departure Delay & x - HourlyDryBulbTemperature_y')
 plt.show()
-plt.scatter(df_prePCA['departure_delay'], df_prePCA['HourlyPrecipitation_y'])
+plt.scatter(df_prePCA['departure_delay'], df_prePCA['HourlyDryBulbTemperature_x'])
+plt.title('Linear Relationship: y - Departure Delay & x - HourlyDryBulbTemperature_x')
 plt.show()
-plt.scatter(df_prePCA['departure_delay'], df_prePCA['HourlyVisibility_y'])
+plt.scatter(df_prePCA['departure_delay'], df_prePCA['HourlyDryBulbTemperature_x'])
+plt.title('Linear Relationship: y - Departure Delay & x - HourlyDryBulbTemperature_x')
 plt.show()
 
 # Next we move to separating our features from our target for Dataframe 1.
 X = df_prePCA[['arrival_delay','delay_carrier', 'delay_weather', 'delay_national_aviation_system',
-               'delay_late_aircarft_arrival', 'HourlyDryBulbTemperature_x', 'HourlyPrecipitation_x',
+               'delay_late_aircarft_arrival', 'actual_arrival_dt', 'HourlyDryBulbTemperature_x', 'HourlyPrecipitation_x',
                'HourlyVisibility_x', 'HourlyDryBulbTemperature_y', 'HourlyPrecipitation_y', 'HourlyVisibility_y']]
 
 Y = df_prePCA['departure_delay']
