@@ -5,8 +5,6 @@ Here we look to apply Random Forest walk analysis to our dataset.
 
 # Importing needed libraries:
 import pandas as pd
-import numpy as np
-import pit as pit
 import statsmodels.api as sm
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
