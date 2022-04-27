@@ -6,6 +6,7 @@ Here we look to apply Random Forest walk analysis to our dataset.
 # Importing needed libraries:
 import pandas as pd
 import numpy as np
+import pit as pit
 import statsmodels.api as sm
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
@@ -37,6 +38,19 @@ regressor.fit(X_train, y_train)
 
 # Running predictions:
 y_pred = regressor.predict(X_test)
+
+# Plotting predictions:
+g = plt.scatter(y_test, y_pred)
+g.axes.set_yscale('log')
+g.axes.set_xscale('log')
+g.axes.set_xlabel('True Values ')
+g.axes.set_ylabel('Predictions ')
+g.axes.axis('equal')
+g.axes.axis('square')
+plt.show()
+
+g = plt.plot(y_test - y_pred,marker='o',linestyle='')
+plt.show()
 
 model = sm.OLS(y_test, X_test).fit()
 print_model = model.summary()
