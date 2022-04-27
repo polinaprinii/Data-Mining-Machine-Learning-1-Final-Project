@@ -16,7 +16,6 @@ from sklearn.metrics import mean_absolute_percentage_error
 from sklearn import metrics
 import matplotlib.pyplot as plt
 
-
 # Importing data:
 df = pd.read_csv('/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Selection_pre_PCA.csv')
 print(df.head(5))
@@ -72,9 +71,6 @@ print('The Root-mean-square deviation for is : %.3f'
 print('The Mean-absolute-percentage-error is : %.3f'
       % mean_absolute_percentage_error(y_test, y_pred), '\n')
 
-# Measuring accuracy on Testing Data
-print('Accuracy',100 - (np.mean(np.abs((y_test - y_pred) / y_test)) * 100))
-
 # Plotting the predicted results:
 x_ax = range(9000)
 plt.scatter(x_ax, y_test, s=5, color="blue", label="original")
@@ -82,7 +78,6 @@ plt.plot(x_ax, y_pred, lw=1.5, color="red", label="predicted")
 plt.legend()
 plt.show()
 
-# TODO: Determine & resolve 'ValueError: operands could not be broadcast together with shapes' when identifying optimum K value.
 
 
 
