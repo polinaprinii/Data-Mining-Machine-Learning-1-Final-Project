@@ -4,7 +4,6 @@ Here we look to apply K-Nearest-Neighbour Regression analysis to our dataset.
 """
 
 # Importing needed libraries:
-import numpy as np
 import pandas as pd
 import statsmodels.api as sm
 from sklearn.neighbors import KNeighborsRegressor
@@ -13,7 +12,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import math
 from sklearn.metrics import mean_absolute_percentage_error
-from sklearn import metrics
 import matplotlib.pyplot as plt
 
 # Importing data:
