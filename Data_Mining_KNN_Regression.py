@@ -33,8 +33,28 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
+# Determining the optimal K-Value.
+n = len(y)
+index = []
+error = []
+for i in range(1, 20):
+    knn = KNeighborsRegressor(n_neighbors = i)
+    knn.fit(X_test, y_test)
+    y_pred = knn.predict(X_test)
+    rss = sum((y_pred - y_test)**2)
+    rse = math.sqrt(rss/(n-2))
+    index.append(i)
+    error.append(rse)
+
+# Plotting the optimum K-value.
+plt.plot(index, error)
+plt.xlabel('Values of K')
+plt.ylabel('RSE Error')
+plt.title('Graph: K VS Error')
+plt.show()
+
 # Applying K-Nearest Neighbour Regression Analysis:
-regr = KNeighborsRegressor(11)
+regr = KNeighborsRegressor(2)
 regr.fit(X_train, y_train)
 y_pred = regr.predict(X_test)
 rmse = math.sqrt(mean_squared_error(y_test, y_pred))
@@ -52,8 +72,8 @@ print('The Root-mean-square deviation for is : %.3f'
 print('The Mean-absolute-percentage-error is : %.3f'
       % mean_absolute_percentage_error(y_test, y_pred), '\n')
 
-#Measuring accuracy on Testing Data
-print('Accuracy',100- (np.mean(np.abs((y_test - y_pred) / y_test)) * 100))
+# Measuring accuracy on Testing Data
+print('Accuracy',100 - (np.mean(np.abs((y_test - y_pred) / y_test)) * 100))
 
 # Plotting the predicted results:
 x_ax = range(9000)
@@ -64,33 +84,5 @@ plt.show()
 
 # TODO: Determine & resolve 'ValueError: operands could not be broadcast together with shapes' when identifying optimum K value.
 
-# import math
-# n = len(y)
-# index = []
-# error = []
-# for i in range(1, 10):
-#     knn = KNeighborsRegressor(n_neighbors = i)
-#     knn.fit(X, y)
-#     y_pred = knn.predict(X)
-#     rss = sum((y_pred - y)**2)
-#     rse = math.sqrt(rss/(n-2))
-#     index.append(i)
-#     error.append(rse)
-# print(index, error)
 
-# test_error = []
-# iterations = list(range(1, 31))
-# for k in range(1, 31):
-#     knn = KNeighborsRegressor(n_neighbors=k)
-#     knn.fit(X_train, y_train)
-#     y_pred = knn.predict(X_test)
-#     error = 1 - knn.score(y_test, y_pred)
-#
-#     test_error.append(error)
-#     print(k, error)
-#
-#
-# plt.figure(figsize=(8, 4), dpi=150)
-# plt.plot(range(1, 31), test_error)
-# plt.show()
 
