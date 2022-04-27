@@ -76,6 +76,18 @@ plt.plot(x_ax, y_pred, lw=1.5, color="red", label="predicted")
 plt.legend()
 plt.show()
 
+g = plt.scatter(y_test, y_pred)
+g.axes.set_yscale('log')
+g.axes.set_xscale('log')
+g.axes.set_xlabel('True Values ')
+g.axes.set_ylabel('Predictions ')
+g.axes.axis('equal')
+g.axes.axis('square')
+plt.show()
+
+g = plt.plot(y_test - y_pred, marker='o', linestyle='')
+plt.show()
+
 
 
 
