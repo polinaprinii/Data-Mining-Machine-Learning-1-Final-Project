@@ -52,7 +52,7 @@ for k in range(1, 11):
     sse_np1.append(kmeans.inertia_)
 
 # Plotting results.
-plt.plot(range(1, 11), sse_np1)
+plt.plot(range(1, 11), sse_np1, '--bo', label='line with marker')
 plt.title('Determining No. of Clusters for non Dimensionality Reduced Data')
 plt.xticks(range(1, 11))
 plt.xlabel("Number of Clusters")
@@ -120,7 +120,7 @@ for k in range(1, 11):
     sse_np2.append(kmeans.inertia_)
 
 # Plotting results.
-plt.plot(range(1, 11), sse_np2)
+plt.plot(range(1, 11), sse_np2, '--bo', label='line with marker')
 plt.xticks(range(1, 11))
 plt.title('Determining No. of Clusters after PCA Application')
 plt.xlabel("Number of Clusters")
