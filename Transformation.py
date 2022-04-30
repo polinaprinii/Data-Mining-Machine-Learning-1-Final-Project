@@ -5,6 +5,7 @@ The selected and pre-processed data is further transformed to ensure the correct
 
 # Importing all necessary packages:
 import os
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -161,4 +162,12 @@ def export():
 export() # Due to laptop constrictions we will look to import the exported file following the pre-processing step.
 
 # Lastly we check how much information (variance) can be attributed to each of the principal components.
-print(sum(pca.explained_variance_ratio_))
+print('Pricipal Component Analysis has retained ',
+          round(sum(pca.explained_variance_ratio_), 2),'%',
+          'of the information aka variance')
+
+total = df['origin_airport'].value_counts()
+top10 = total.nlargest(n=10)
+top10.plot(kind='bar', xlabel='Airport', ylabel='No of Delays', title='Airport with Most Delays - Top 10',
+           figsize = (9.5,9), rot=0)
+plt.show()
