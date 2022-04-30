@@ -154,7 +154,7 @@ print(kmeans_np2.cluster_centers_, '\n')
 # The number of iterations required to converge
 print(kmeans_np2.n_iter_, '\n')
 
-# Plotting the results of K-Means Clustering for np1.
+# Plotting the results of K-Means Clustering for np2.
 # predict the labels of clusters.
 label_np2 = kmeans_np2.fit_predict(scaled_features_np1)
 
@@ -170,5 +170,11 @@ plt.title('Flight Delay Data, K= 4')
 plt.show()
 
 
+# check how many of the samples were correctly labeled
 
+correct_labels = sum(np2 == label_np2)
+
+print("Result: %d out of %d samples were correctly labeled." % (correct_labels, np2.size))
+
+print('Accuracy score: {0:0.2f}'. format(correct_labels/float(np2.size)))
 
