@@ -165,7 +165,7 @@ u_labels_np2 = np.unique(label_np2)
 for i in u_labels_np2:
     plt.scatter(np2[label_np2 == i , 0] , np2[label_np2 == i , 1] , label = i)
 plt.scatter(centroids[:,0] , centroids[:,1] , s = 80, color = 'k')
-plt.legend(['Cluster1', 'Cluster 2,', 'Cluster 3', 'Cluster 4'], loc = 'best')
+plt.legend(['Cluster1', 'Cluster 2', 'Cluster 3', 'Cluster 4'], loc = 'best')
 plt.title('Flight Delay Data, K= 4')
 plt.show()
 
