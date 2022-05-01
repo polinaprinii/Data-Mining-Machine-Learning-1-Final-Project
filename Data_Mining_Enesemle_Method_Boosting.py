@@ -57,7 +57,10 @@ pred_final = model_2.predict(X_test)
 print('GradientBoosting Score: ', model_2.score(X_test, y_test), '\n')
 print('The mean-squared error of the GradientBoosting ensemble learning : %.3f'
       % mean_squared_error(y_test, y_pred), '\n' )
-
+print('The Root-mean-square deviation of the GradientBoosting ensemble learning : %.3f'
+      % rmse, '\n')
+print('The Mean-absolute-percentage-error of the GradientBoosting ensemble learning : %.3f'
+      % mean_absolute_percentage_error(y_test, y_pred), '\n')
 
 
 
