@@ -9,14 +9,26 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from yellowbrick.cluster import KElbowVisualizer
+sns.set_context('notebook')
+plt.style.use('fivethirtyeight')
+from warnings import filterwarnings
+filterwarnings('ignore')
 
 # Importing dataframe.
 df = pd.read_csv("/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/Selection_PCA.csv")
 print(df.head(2))
 
+# Plot the raw data
+plt.figure(figsize=(8, 8))
+plt.scatter(df.iloc[:, 0], df.iloc[:, 1])
+plt.xlabel('Principal Component 1')
+plt.ylabel('Principal Component 2')
+plt.title('Visualization of raw data')
+plt.show()
+
 # Determining number of cluster to apply.
 model = KMeans()
-visualizer = KElbowVisualizer(model, k=(1,12)).fit(df)
+visualizer = KElbowVisualizer(model, k=(1,12), size=(1080, 720)).fit(df)
 visualizer.show()
 
 # Applying k-means algorithm.
@@ -28,9 +40,11 @@ print(kmeans.cluster_centers_, '\n')
 print(kmeans.labels_,'\n')
 
 # Plotting results
-sns.scatterplot(data=df, x="principal component 1", y="principal component 2", hue=kmeans.labels_)
+sns.scatterplot(data=df, x="principal component 1", y="principal component 2", hue=kmeans.labels_).set(
+    title='K-means Cluster: k=4')
 plt.scatter(kmeans.cluster_centers_[:,0], kmeans.cluster_centers_[:,1],
             marker="X", c="r", s=80, label="centroids")
+plt.title('K-means Clustering: k=4')
 plt.legend()
 plt.show()
 
