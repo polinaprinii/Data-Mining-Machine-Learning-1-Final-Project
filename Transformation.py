@@ -117,10 +117,6 @@ principalDf = pd.DataFrame(data = principalComponents
 
 # Lastly we concatenate the reduced dataset with a single column from the original source which specifies the origin airport.
 finalDf = pd.concat([df[target], principalDf], axis = 1)
-# print(finalDf.head(5))
-finalDf.to_csv(
-    "/Users/polinaprinii/Desktop/Project Datasets/Flight Delays for 2019 for the USA/newdf.csv",
-    index=False, encoding='utf-8-sig')
 
 # Visualise results.
 fig = plt.figure(figsize = (8,8))
