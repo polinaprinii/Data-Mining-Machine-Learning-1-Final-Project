@@ -6,6 +6,7 @@ Boosting is a sequential method–it aims to prevent a wrong base model from aff
 
 # Importing needed libraries:
 import pandas as pd
+import statsmodels.api as sm
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.ensemble import GradientBoostingRegressor, AdaBoostRegressor
@@ -37,6 +38,11 @@ model.fit(X_train, y_train)
 # make predictions
 y_pred = model.predict(X_test)
 rmse = math.sqrt(mean_squared_error(y_test, y_pred))
+
+# # Assigning the OLS model.
+# model = sm.OLS(y_test, X_test).fit()
+# print_model = model.summary()
+
 print('Prediction:', y_pred, '\n')
 print('AdaBoosting Score: ', round(model.score(X_test, y_test),2), '\n')
 print('The mean-squared error of the AdaBoosting ensemble learning : %.3f'
