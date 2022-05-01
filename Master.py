@@ -4,7 +4,9 @@ import Data_Selection
 import Pre_Processing
 import Transformation
 import Data_Mining_KMeans_Clusters
+import Data_Mining_KMeans_V2
 import Data_Mining_Linear_Regression
 import Data_Mining_KNN_Regression
 import Data_Mining_Random_Forest_Walk
 import Data_Mining_Ensemble_Method_Boosting
+import Data_Mining_Ensemble_Method_Boosting_2
