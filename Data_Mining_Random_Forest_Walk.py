@@ -50,6 +50,7 @@ plt.show()
 g = plt.plot(y_test - y_pred,marker='o',linestyle='')
 plt.show()
 
+# Assigning the OLS model.
 model = sm.OLS(y_test, X_test).fit()
 print_model = model.summary()
 
