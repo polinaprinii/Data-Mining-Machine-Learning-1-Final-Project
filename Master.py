@@ -7,4 +7,4 @@ import Data_Mining_KMeans_Clusters
 import Data_Mining_Linear_Regression
 import Data_Mining_KNN_Regression
 import Data_Mining_Random_Forest_Walk
-import Data_Mining_Enesemle_Method_Boosting
+import Data_Mining_Ensemble_Method_Boosting
