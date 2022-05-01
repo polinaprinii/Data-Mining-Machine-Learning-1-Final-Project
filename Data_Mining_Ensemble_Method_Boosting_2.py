@@ -40,7 +40,7 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 rmse = math.sqrt(mean_squared_error(y_test, y_pred))
 
-print('GradientBoosting Score: ', model.score(X_test, y_test), '\n')
+print('GradientBoosting Score: ', round(model.score(X_test, y_test),2), '\n')
 print('The mean-squared error of the GradientBoosting ensemble learning : %.3f'
       % mean_squared_error(y_test, y_pred), '\n' )
 print('The Root-mean-square deviation of the GradientBoosting ensemble learning : %.3f'
