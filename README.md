@@ -1,4 +1,6 @@
 # Data Mining & Machine Learning: Portfolio Project (100%) #
+#### Module results:
+Achieved a 76% mark.
 ### Project Overview: ### 
 A portfolio which critically compares the performance of five different machine learning methods applied to 
 three large datasets with a degree of relatability. 
